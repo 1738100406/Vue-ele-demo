@@ -16,6 +16,7 @@
       placeholder="验证码"
       v-model="verifyCode"
       :disabled="disabled"
+      :error="error.code"
     ></inputGroup>
     <!-- 用户协议 -->
     <div class="login_des">
@@ -26,7 +27,7 @@
     </div>
     <!-- 登录按钮 -->
     <div class="login_btn">
-      <button>登录</button>
+      <button :disabled="isClick" @click="handleLogin">登录</button>
     </div>
   </div>
 </template>
@@ -43,11 +44,38 @@ export default {
       btnTitle: "获取验证码",
     };
   },
+  computed: {
+    isClick() {
+      if (!this.phone || !this.verifyCode) return true;
+      else return false;
+    },
+  },
   methods: {
     getVerifyCode() {
       if (this.VerifyPhone()) {
-        //发起网络请求
         this.Veridate();
+        //发起网络请求 发验证码
+        // this.$axios.post('',{})
+        alert("验证码为 1234");
+      }
+    },
+    // 登录跳转
+    handleLogin() {
+      this.error = {}; // 取消错误提示
+      // 核实验证码
+      //   this.$axios.get("", {}).then((res) => { conse.log(res);})
+      //     .catch((error) => { this.error = {
+      //         code: "验证码错误",
+      //       };
+      //     });
+
+      if (this.verifyCode == "1234") {
+        localStorage.setItem("ele_login", true);
+        this.$router.push("/");
+      } else {
+        this.error = {
+          code: "验证码错误,请重新输入",
+        };
       }
     },
     // 倒计时
