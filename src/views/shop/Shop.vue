@@ -5,7 +5,7 @@
       <div class="nav_bg">
         <img :src="shopInfo.rst.scheme" alt="" />
       </div>
-      <div class="nav_back">
+      <div class="nav_back" @click="$router.push('/')">
         <i class="fa fa-chevron-left"></i>
       </div>
       <div class="shop_image">

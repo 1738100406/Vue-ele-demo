@@ -73,10 +73,13 @@
         </ul>
       </div>
     </div>
+    <!-- 购物车 -->
+    <ShopCar :shopInfo="shopInfo" />
   </div>
 </template>
 
 <script>
+import ShopCar from "./ShopCar.vue";
 import BScroll from "better-scroll";
 import CartControll from "@/components/Shop/CartControll.vue";
 export default {
@@ -123,8 +126,8 @@ export default {
       );
       let el = foodlist[i];
       // 滚动到对应元素
-      console.log(el);
-      // this.foodScroll.scrollToElement(el, 250);
+      // console.log(el);
+      this.foodScroll.scrollToElement(el, 250);
     },
   },
   created() {
@@ -132,6 +135,7 @@ export default {
   },
   components: {
     CartControll,
+    ShopCar,
   },
 };
 </script>
