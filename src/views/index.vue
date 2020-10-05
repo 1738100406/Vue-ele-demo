@@ -58,10 +58,13 @@
         </div>
       </ul>
     </mt-loadmore>
+    <TabBar />
   </div>
 </template>
 
 <script>
+import TabBar from "@/components/TabBar.vue";
+
 import { Swipe, SwipeItem, Loadmore } from "mint-ui";
 
 import IndexShop from "../components/Indexshop.vue";
@@ -119,6 +122,7 @@ export default {
   components: {
     FilterView,
     IndexShop,
+    TabBar,
   },
   computed: {
     address() {

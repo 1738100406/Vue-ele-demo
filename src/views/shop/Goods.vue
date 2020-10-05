@@ -55,7 +55,12 @@
               <span class="">{{ item.description }}</span>
             </div>
             <!-- 内容下 -->
-            <div class="fooddetails" v-for="(foods, i) in item.foods" :key="i">
+            <div
+              class="fooddetails"
+              @click="showfood(foods)"
+              v-for="(foods, i) in item.foods"
+              :key="i"
+            >
               <img :src="foods.image_path" alt="" />
               <div class="fooddetails-info">
                 <h4>{{ foods.name }}</h4>
@@ -75,6 +80,8 @@
     </div>
     <!-- 购物车 -->
     <ShopCar :shopInfo="shopInfo" />
+    <!-- 商品详情 -->
+    <Food @close="isShow = false" :foods="foods" :isShow="isShow" />
   </div>
 </template>
 
@@ -82,15 +89,22 @@
 import ShopCar from "./ShopCar.vue";
 import BScroll from "better-scroll";
 import CartControll from "@/components/Shop/CartControll.vue";
+import Food from "./Food.vue";
 export default {
   data() {
     return {
       shopInfo: null,
       menuScroll: {},
       foodScroll: {},
+      foods: null,
+      isShow: false,
     };
   },
   methods: {
+    showfood(foods) {
+      this.foods = foods;
+      this.isShow = true;
+    },
     getDate() {
       this.$axios.get("/api/profile/batch_shop").then((res) => {
         res.data.recommend.forEach((recommends) => {
@@ -105,7 +119,7 @@ export default {
         });
         this.shopInfo = res.data;
         this.initBScroll();
-        console.log(this.shopInfo);
+        // console.log(this.shopInfo);
       });
     },
     initBScroll() {
@@ -136,6 +150,7 @@ export default {
   components: {
     CartControll,
     ShopCar,
+    Food,
   },
 };
 </script>

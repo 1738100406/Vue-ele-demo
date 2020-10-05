@@ -18,7 +18,7 @@ npm run build
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-
+.toFixed(1)  //保留一位
 
 点击tab后 根据索引值i 和当前的点击的值current是否相等来显示高亮
 

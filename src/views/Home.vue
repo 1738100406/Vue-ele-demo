@@ -1,16 +1,12 @@
 <template>
   <div class="home">
     <router-view />
-    <TabBar />
   </div>
 </template>
 
 <script>
-import TabBar from "@/components/TabBar.vue";
 export default {
-  components: {
-    TabBar,
-  },
+  components: {},
   methods: {},
 };
 </script>
