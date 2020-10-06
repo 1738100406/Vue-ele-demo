@@ -16,6 +16,7 @@ const routes = [
       { path: '/myaddress', name: 'myaddress', component: () => import("../views/Order/Myaddress.vue") },
       { path: '/addaddress', name: 'addaddress', component: () => import("../views/Order/Addaddress.vue") },
       { path: '/settlement', name: 'settlement', component: () => import("../views/Order/Settlement.vue") },
+      { path: '/remark', name: 'remark', component: () => import("../views/Order/Remark.vue") },
       { path: '/city', name: 'city', component: () => import("../views/City.vue") },
       { path: '/search', name: 'search', component: () => import("../views/Search.vue") },
       {

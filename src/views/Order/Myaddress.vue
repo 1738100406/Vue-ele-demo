@@ -2,7 +2,10 @@
   <div class="myAddress">
     <div class="address-view" v-if="allAddress">
       <div class="address-card" v-for="(item, i) in allAddress" :key="i">
-        <div class="address-card-body">
+        <div class="address-card-select">
+          <i v-if="selectIndex === i" class="fa fa-check-circle"></i>
+        </div>
+        <div class="address-card-body" @click="setAddressInfo(item, i)">
           <div class="address-card-title">
             <div class="username">{{ item.name }}</div>
             <div class="gender">{{ item.sex }}</div>
@@ -33,6 +36,7 @@ export default {
   data() {
     return {
       allAddress: JSON.parse(localStorage.getItem("userinfo")).myAddress,
+      selectIndex: 0,
     };
   },
   methods: {
@@ -54,6 +58,11 @@ export default {
           bottom: "",
         },
       });
+    },
+    setAddressInfo(item, i) {
+      this.selectIndex = i;
+      this.$store.dispatch("setUserInfo", item);
+      this.$router.push("/settlement");
     },
   },
   created() {},
