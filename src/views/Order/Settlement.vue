@@ -1,18 +1,14 @@
 <template>
   <div>
-    订单
-    <TabBar />
+    <Header isLeft title="结算" />
   </div>
 </template>
 
 <script>
-import TabBar from "@/components/TabBar.vue";
+import Header from "@/components/Header.vue";
 export default {
-  data() {
-    return {};
-  },
   components: {
-    TabBar,
+    Header,
   },
 };
 </script>

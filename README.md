@@ -155,3 +155,22 @@ export default {
 </style>
 ```
 
+路由跳转传传参数
+
+```
+this.$router.push({name:“ ”, params:“ ”})
+
+beforeRouteEnter(to, from, next) {
+
+    next((vm) => {
+
+      vm.tagsinfo = to.params;
+
+    });
+
+  },
+  
+  两种方式的区别是query传参的参数会带在url后边展示在地址栏，params传参的参数不会展示到地址栏。需要注意的是接收参数的时候是route而不是router。两种方式一一对应，名字不能混用
+  由于动态路由也是传递params的，所以在 this.$router.push() 方法中path不能和params一起使用，否则params将无效。需要用name来指定页面。s
+```
+

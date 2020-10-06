@@ -13,6 +13,9 @@ const routes = [
       { path: '/order', component: () => import("../views/Order.vue") },
       { path: '/me', component: () => import("../views/Me.vue") },
       { path: '/address', name: 'address', component: () => import("../views/Address.vue") },
+      { path: '/myaddress', name: 'myaddress', component: () => import("../views/Order/Myaddress.vue") },
+      { path: '/addaddress', name: 'addaddress', component: () => import("../views/Order/Addaddress.vue") },
+      { path: '/settlement', name: 'settlement', component: () => import("../views/Order/Settlement.vue") },
       { path: '/city', name: 'city', component: () => import("../views/City.vue") },
       { path: '/search', name: 'search', component: () => import("../views/Search.vue") },
       {

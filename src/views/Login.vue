@@ -51,14 +51,6 @@ export default {
     },
   },
   methods: {
-    getVerifyCode() {
-      if (this.VerifyPhone()) {
-        this.Veridate();
-        //发起网络请求 发验证码
-        // this.$axios.post('',{})
-        alert("验证码为 1234");
-      }
-    },
     // 登录跳转
     handleLogin() {
       this.error = {}; // 取消错误提示
@@ -70,12 +62,31 @@ export default {
       //     });
 
       if (this.verifyCode == "1234") {
-        localStorage.setItem("ele_login", true);
+        localStorage.setItem("ele_login", this.phone);
+        //
+        this.login();
+        //
         this.$router.push("/");
       } else {
         this.error = {
           code: "验证码错误,请重新输入",
         };
+      }
+    },
+    login() {
+      this.$axios
+        .post("/api/posts/sms_back", { phone: 17610351502, code: 552367 })
+        .then((res) => {
+          this.userinfo = res.data.user;
+          localStorage.setItem("userinfo", JSON.stringify(this.userinfo));
+        });
+    },
+    getVerifyCode() {
+      if (this.VerifyPhone()) {
+        this.Veridate();
+        //发起网络请求 发验证码
+        // this.$axios.post('',{})
+        alert("验证码为 1234");
       }
     },
     // 倒计时
