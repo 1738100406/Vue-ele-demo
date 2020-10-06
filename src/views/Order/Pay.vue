@@ -1,6 +1,6 @@
 <template>
   <div class="pay">
-    <Header title="在线支付" />
+    <Header :isLeft="true" title="在线支付" />
     <div class="main" v-if="orderInfo">
       <div class="tip">
         <div class="countdown-title">支付剩余时间</div>
@@ -25,7 +25,7 @@
         </ul>
       </section>
       <div class="btn-submit-wrap">
-        <button class="btn-submit">确认支付</button>
+        <button :disabled="timeout" class="btn-submit">确认支付</button>
       </div>
     </div>
   </div>
@@ -37,7 +37,40 @@ export default {
   data() {
     return {
       countdown: "00:15:00",
+      timer: "",
+      timeout: false,
     };
+  },
+  methods: {
+    countTimedown() {
+      var minute = 14;
+      var second = 59;
+
+      this.timer = setInterval(() => {
+        second--;
+        if (second == "00" && minute == "00") {
+          this.countdown = "订单已超时";
+          clearInterval(this.timer);
+          this.timeout = true;
+        }
+        if (second == "00") {
+          second = 59;
+          minute--;
+          if (minute < 10) {
+            minute = "0" + minute;
+          }
+          if (second < 10) {
+            second = "0" + second;
+          }
+        }
+        this.countdown = "00:" + minute + ":" + second;
+      }, 1000);
+    },
+  },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.countTimedown();
+    });
   },
   computed: {
     orderInfo() {
