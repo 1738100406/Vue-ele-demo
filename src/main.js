@@ -6,13 +6,19 @@ import axios from 'axios'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import { Indicator } from 'mint-ui';
+import qs from 'qs'
 
 Vue.prototype.$axios = axios
+axios.defaults.baseURL = 'https://eleme3-peak-04176.herokuapp.com'
 Vue.config.productionTip = false
 Vue.use(MintUI)
 
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
+  if (config.method == 'post') {
+    config.data = qs.stringify(config.data)
+  }
+
   // 在发送请求之前做些什么
   // Indicator.open({ text: '加载中...', spinnerType: 'fading-circle' });
   return config;

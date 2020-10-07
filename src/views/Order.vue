@@ -31,6 +31,12 @@
         </div>
       </div>
     </div>
+    <div v-else class="noorder">
+      <div class="noorder-warp">
+        <img src="@/assets/order.png" alt="" />
+        <span>暂无订单</span>
+      </div>
+    </div>
     <TabBar />
   </div>
 </template>
@@ -50,9 +56,7 @@ export default {
     };
   },
   beforeRouteEnter(to, from, next) {
-    next((vm) => {
-      console.log(vm.orderList);
-    });
+    next();
   },
   methods: {
     // getData() {
@@ -75,6 +79,27 @@ export default {
 </script>
 
 <style scoped>
+.noorder {
+  width: 100%;
+  height: 100%;
+  margin-top: 40px;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin-bottom: 2.666667vw;
+}
+.noorder-warp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.noorder-warp img {
+  width: 240px;
+  height: 210px;
+}
+.noorder-warp span {
+  color: #999;
+}
 .order {
   width: 100%;
   height: 100%;
