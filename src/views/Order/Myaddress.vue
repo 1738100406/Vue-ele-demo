@@ -62,7 +62,11 @@ export default {
     setAddressInfo(item, i) {
       this.selectIndex = i;
       this.$store.dispatch("setUserInfo", item);
-      this.$router.push("/settlement");
+      if (!this.$store.getters.orderInfo) {
+        this.$router.push("/me");
+      } else {
+        this.$router.push("/settlement");
+      }
     },
   },
   created() {},

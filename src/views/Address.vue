@@ -76,7 +76,7 @@ export default {
     },
   },
   beforeRouteEnter(to, from, next) {
-    console.log(to);
+    // console.log(to);
     next((vm) => {
       vm.city = to.params.city;
     });

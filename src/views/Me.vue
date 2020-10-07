@@ -45,14 +45,19 @@ export default {
       }
     },
     Myaddress() {
-      if (this.userinfo) {
-        this.$router.push("/myaddress");
+      if (this.phone) {
+        if (this.userinfo) {
+          this.$router.push("/myaddress");
+        } else {
+          this.$router.push("/addaddress");
+        }
       } else {
-        this.$router.push("/addaddress");
+        this.$router.push("/login");
       }
     },
     loginOut() {
-      localStorage.clear();
+      window.localStorage.clear();
+      window.location.reload();
       this.$router.push("/login");
     },
   },

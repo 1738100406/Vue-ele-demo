@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="order-main">
     <Header title="订单" />
     <div class="order" v-if="orderList.orderInfo">
       <div class="order-card-body">
@@ -32,9 +32,20 @@
       </div>
     </div>
     <div v-else class="noorder">
-      <div class="noorder-warp">
-        <img src="@/assets/order.png" alt="" />
+      <div v-if="isLogin" class="noorder-warp">
+        <img
+          src="https://fuss10.elemecdn.com/d/60/70008646170d1f654e926a2aaa3afpng.png"
+          alt=""
+        />
         <span>暂无订单</span>
+      </div>
+      <div v-else class="noorder-warp">
+        <img
+          src="https://fuss10.elemecdn.com/d/60/70008646170d1f654e926a2aaa3afpng.png"
+          alt=""
+        />
+        <span>登录后查看外卖订单</span>
+        <button @click="$router.push('/login')" class="btn">立即登录</button>
       </div>
     </div>
     <TabBar />
@@ -53,6 +64,7 @@ export default {
         remarkInfo: this.$store.getters.remarkInfo,
         userInfo: this.$store.getters.userInfo,
       },
+      isLogin: localStorage.getItem("ele_login"),
     };
   },
   beforeRouteEnter(to, from, next) {
@@ -79,26 +91,43 @@ export default {
 </script>
 
 <style scoped>
+.order-main {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 .noorder {
   width: 100%;
-  height: 100%;
-  margin-top: 40px;
-  overflow: hidden;
+  margin-top: 80px;
   box-sizing: border-box;
   margin-bottom: 2.666667vw;
+  background-color: #eee;
+  overflow-y: hidden;
 }
 .noorder-warp {
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
+
 .noorder-warp img {
   width: 240px;
   height: 210px;
 }
 .noorder-warp span {
   color: #999;
+}
+.noorder-warp .btn {
+  width: 120px;
+  height: 40px;
+  margin: 10px auto;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #56d176;
 }
 .order {
   width: 100%;
