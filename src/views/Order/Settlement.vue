@@ -4,11 +4,7 @@
     <div class="view-body">
       <!-- 收货地址 -->
       <div class="cart-address">
-        <div class="title">
-          订单配送至
-          <h3 class="address-tag"></h3>
-        </div>
-
+        <div class="title">订单配送至</div>
         <div class="address-detail">
           <span v-if="userInfo">
             <span @click="$router.push('/myaddress')">{{
@@ -172,7 +168,7 @@ export default {
 .cart-address {
   background-color: transparent;
   padding: 4.266667vw 2.133333vw 2.933333vw 2.133333vw;
-  min-height: 22.133333vw;
+  min-height: 25.133333vw;
   color: #fff;
   overflow: hidden;
 }

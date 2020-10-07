@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="me">
-      <div class="headInfo">
+      <div @click="me" class="headInfo">
         <div class="head-img"></div>
         <div class="head-profile">
           <div v-if="userinfo" class="user-id">{{ userinfo._id }}</div>
@@ -39,6 +39,11 @@ export default {
     };
   },
   methods: {
+    me() {
+      if (!localStorage.getItem("userinfo")) {
+        this.$router.push("/login");
+      }
+    },
     Myaddress() {
       if (this.userinfo) {
         this.$router.push("/myaddress");

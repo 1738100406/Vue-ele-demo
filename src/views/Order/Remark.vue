@@ -61,21 +61,21 @@ export default {
       item.select = true;
     },
     submit() {
-      let remarkx = "";
+      var remark = "";
       this.radioItem.forEach((item) => {
         if (item.select) {
-          remarkx += item.name + ",";
+          remark += item.name + ",";
         }
       });
       this.switchItem.forEach((item) => {
         if (item.select) {
-          remarkx += item.name + ",";
+          remark += item.name + ",";
         }
       });
-      remarkx += this.text;
+      remark += this.text;
       this.$store.dispatch("setRemarkInfo", {
-        tabware: this.$store.getters.remarkInfo.tabware,
-        remark: remarkx,
+        tableware: this.$store.state.remarkInfo.tableware,
+        remark: remark,
       });
       this.$router.go(-1);
     },

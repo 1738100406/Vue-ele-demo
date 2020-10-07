@@ -19,7 +19,7 @@
     </div>
     <mt-swipe class="swiper" :auto="4000">
       <mt-swipe-item v-for="(item, i) in datalist" :key="i">
-        <img :src="item.img" />
+        <img :src="item" />
       </mt-swipe-item>
     </mt-swipe>
     <mt-swipe class="entries" :auto="0">
@@ -140,11 +140,9 @@ export default {
   },
   methods: {
     getData() {
-      this.$axios
-        .get("http://api.cms.liulongbin.top/api/getlunbo")
-        .then(({ data }) => {
-          this.datalist = data.message;
-        });
+      this.$axios.get("/api/profile/shopping").then(({ data }) => {
+        this.datalist = data.swipeImgs;
+      });
       this.$axios
         .get(
           "https://www.fastmock.site/mock/ae3a2c74c182f166d86cab7a2466dca7/foodlist/api/food"

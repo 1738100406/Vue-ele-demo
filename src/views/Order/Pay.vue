@@ -1,6 +1,6 @@
 <template>
   <div class="pay">
-    <Header :isLeft="true" title="在线支付" />
+    <Header title="在线支付" />
     <div class="main" v-if="orderInfo">
       <div class="tip">
         <div class="countdown-title">支付剩余时间</div>
@@ -25,7 +25,9 @@
         </ul>
       </section>
       <div class="btn-submit-wrap">
-        <button :disabled="timeout" class="btn-submit">确认支付</button>
+        <button @click="pay" :disabled="timeout" class="btn-submit">
+          确认支付
+        </button>
       </div>
     </div>
   </div>
@@ -37,21 +39,27 @@ export default {
   data() {
     return {
       countdown: "00:15:00",
-      timer: "",
+      timer: null,
       timeout: false,
     };
   },
   methods: {
+    pay() {
+      alert("进入到pay方法");
+      alert("你已支付完成");
+      this.$router.push("/order");
+      this.addOrder();
+    },
     countTimedown() {
       var minute = 14;
       var second = 59;
-
       this.timer = setInterval(() => {
         second--;
         if (second == "00" && minute == "00") {
           this.countdown = "订单已超时";
           clearInterval(this.timer);
           this.timeout = true;
+          return;
         }
         if (second == "00") {
           second = 59;
@@ -59,12 +67,21 @@ export default {
           if (minute < 10) {
             minute = "0" + minute;
           }
-          if (second < 10) {
-            second = "0" + second;
-          }
+        }
+        if (second < 10) {
+          second = "0" + second;
         }
         this.countdown = "00:" + minute + ":" + second;
       }, 1000);
+    },
+    addOrder() {
+      let orderList = {
+        orderInfo: this.orderInfo,
+        totalPrice: this.totalPrice,
+        remarkInfo: this.remarkInfo,
+        userInfo: this.userInfo,
+      };
+      // console.log(orderList);
     },
   },
   beforeRouteEnter(to, from, next) {
@@ -78,6 +95,12 @@ export default {
     },
     totalPrice() {
       return this.$store.getters.totalcount;
+    },
+    remarkInfo() {
+      return this.$store.getters.remarkInfo;
+    },
+    userInfo() {
+      return this.$store.getters.userInfo;
     },
   },
   components: { Header },
