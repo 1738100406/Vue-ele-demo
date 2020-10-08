@@ -12,9 +12,7 @@
             }}</span>
           </span>
           <span v-else>
-            <span v-if="haveAddress" @click="$router.push('/myaddress')"
-              >选择地址</span
-            >
+            <span v-if="haveAddress" @click="selectAddress">选择地址</span>
             <span @click="addaddress" v-else>新增收货地址</span>
             <i class="fa fa-angle-right"></i
           ></span>
@@ -89,6 +87,13 @@ export default {
     },
   },
   methods: {
+    selectAddress() {
+      if (localStorage.getItem("ele_login")) {
+        this.$router.push("/myaddress");
+      } else {
+        this.$router.push("/login");
+      }
+    },
     addaddress() {
       this.$router.push({
         name: "addaddress",

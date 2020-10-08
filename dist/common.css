@@ -5,6 +5,20 @@ a {
 textarea{
   resize: none;
 }
+.mint-indicator{
+  z-index: 1000 !important;
+}
+.mint-indicator-wrapper {
+  z-index: 1000 !important;
+}
+
+.mint-indicator-mask {
+  z-index: 1000 !important;
+}
+.mint-indicator-text {
+  z-index: 1000 !important;
+
+}
 .flex {
     display: flex;
 }

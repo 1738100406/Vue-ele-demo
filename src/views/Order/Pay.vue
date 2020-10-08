@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { Toast } from "mint-ui";
 import Header from "@/components/Header.vue";
 export default {
   data() {
@@ -46,9 +47,15 @@ export default {
   methods: {
     pay() {
       alert("进入到pay方法");
-      alert("你已支付完成");
-      this.$router.push("/order");
+      Toast({
+        message: "支付成功",
+        iconClass: "fa fa-check fa-3x",
+        duration: 3000,
+      });
       this.addOrder();
+      setTimeout(() => {
+        this.$router.push("/order");
+      }, 3000);
     },
     countTimedown() {
       var minute = 14;

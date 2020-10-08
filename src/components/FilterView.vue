@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ View: isView }" @click.self="hiedView">
+  <div class="FilterView" :class="{ View: isView }" @click.self="hiedView">
     <!-- 导航 -->
     <div v-if="filterData" class="filter_wrap">
       <aside class="filter">
@@ -81,7 +81,7 @@ export default {
   position: relative;
   border-bottom: 1px solid #ddd;
   line-height: 10.4vw;
-  z-index: 9;
+  z-index: 0;
   height: 10.666667vw;
   display: flex;
   justify-content: space-around;

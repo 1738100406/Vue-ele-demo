@@ -245,7 +245,7 @@ export default {
 
 .entries {
   background: #fff;
-  height: 33.2vw;
+  height: 32.2vw;
   text-align: center;
   overflow: hidden;
 }
