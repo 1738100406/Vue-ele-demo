@@ -268,7 +268,7 @@ export default {
 .foodentry span {
   display: block;
   color: #666;
-  font-size: 0.32rem;
+  font-size: 0.9rem;
 }
 /* 推荐商家 */
 .shoplist-title {

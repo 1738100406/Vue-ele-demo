@@ -127,7 +127,11 @@ export default {
         });
     },
     handpay() {
-      this.$router.push("/pay");
+      if (localStorage.getItem("ele_login")) {
+        this.$router.push("/pay");
+      } else {
+        this.$router.push("/login");
+      }
     },
   },
 
